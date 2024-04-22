@@ -1,38 +1,76 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
 
-header{
+header {
     height: 100vh;
     background-color: aquamarine;
     background-image: url(../img/wallpaper.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
-h1{
+
+h1 {
     text-align: center;
     color: rgb(247, 0, 255);
     font-size: 70px;
 }
-section{
+
+section {
     display: flex;
     justify-content: space-around;
-    
+
 }
-section div{
-    height: 300px;
-    width: 300px;
+
+section div {
+    height: 370px;
+    width: 350px;
     border-radius: 5%;
     background-color: rgb(247, 0, 255);
     overflow: hidden;
     text-align: center;
-
+    box-shadow: 6px 6px 4px rgb(165, 1, 171);
+    position: relative;
 }
+
+section div h2 {
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
 section img {
     width: 100%;
 }
 
+header h3 {
+    color: white;
+    position: absolute;
+    top: 45%;
+    left: 150px;
+    font-size: 30px;
+}
 
+header h4 {
+    color: white;
+    position: absolute;
+    left: 150px;
+    top: 90%;
+    font-size: 30px;
+}
 
+.etoile {
+    display: flex;
+    justify-content: space-around;
+}
+
+.etoile img {
+    width: 35px;
+    /* Taille des étoiles */
+    height: 35px;
+}

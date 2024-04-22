@@ -26,3 +26,5 @@ const NEWS = [{
         date: "06/12/2021"
     }
 ];
+
+export default NEWS;
