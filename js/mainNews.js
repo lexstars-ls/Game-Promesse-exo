@@ -2,7 +2,7 @@ import NEWS from "./news";
 
 export function mainNews() {
     const newsPromise = new Promise(function (resolve, reject) {
-        if (NEWS == undefined) {
+        if (NEWS !== undefined) {
             resolve(NEWS);
             console.log('news disponible');
         } else {
@@ -20,6 +20,7 @@ export function mainNews() {
                 const templateHtml = document.querySelector('#newsTemplate');
                 let cloneTemplate = document.importNode(templateHtml.content, true);
 
+                // a modifier
                 const newsSection = cloneTemplate.querySelector('section');
                 const newsArticle = cloneTemplate.querySelector('article');
                 const newsTexte = cloneTemplate.querySelector('p');
@@ -28,11 +29,14 @@ export function mainNews() {
                 const newsImage = cloneTemplate.querySelector('img');
 
                 // Assigner les valeurs
+                // a compléter
                 newsTexte.textContent = news[i].content;
                 newsImage.src = news[i].image;
-                newsImage.alt = news[i].alt;
+                newsTitle.textContent = news[i].title;
+                newsAuthor.textContent =news[i].author && news[i].date;
 
                 // Ajouter des éléments clonés à la structure HTML existante dans le main
+                // demander explication complémentaire
                 document.querySelector('main').appendChild(cloneTemplate);
             }
         })
@@ -44,6 +48,7 @@ export function mainNews() {
             errorMessage.textContent = "Une erreur est survenue lors du chargement des news.";
 
             // Ajouter l'élément d'erreur à la structure HTML existante dans le main
+            
             document.querySelector('main').appendChild(errorClone);
         });
 }
