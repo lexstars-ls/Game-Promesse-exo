@@ -1,6 +1,21 @@
 import GAMES from "./games.js";
 
-export function header() {
+export function mainGame() {
+    const templateHtml = document.querySelector('#gameTemplate');
+    let cloneTemplate = document.importNode(templateHtml.content, true);
+    let title = cloneTemplate.querySelector('h1');
+    let sectionTitle = cloneTemplate.querySelector('h3');
+    let lastSectionTitle = cloneTemplate.querySelector('h4');
+
+    title.textContent = "Jeux Vidéo EGS l'actu au quotidien";
+    sectionTitle.textContent = "Les derniers jeux notés";
+    lastSectionTitle.textContent = "Les dernières news";
+
+    templateHtml.appendChild(title);
+    templateHtml.appendChild(sectionTitle);
+    
+    templateHtml.appendChild(lastSectionTitle);
+
     const headerPromise = new Promise(function (resolve, reject) {
         if (GAMES !== undefined) {
             resolve(GAMES);
@@ -14,18 +29,8 @@ export function header() {
             return games
         })
         .then(function (games) {
-            const body = document.querySelector('body');
-            const templateHtml = document.querySelector('#gameTemplate');
-            let cloneTemplate = document.importNode(templateHtml.content, true);
-            let title = cloneTemplate.querySelector('h1');
-            let sectionTitle = cloneTemplate.querySelector('h3');
-            let lastSectionTitle = cloneTemplate.querySelector('h4');
 
-            title.textContent = "Jeux Vidéo EGS l'actu au quotidien";
-            sectionTitle.textContent = "Les derniers jeux notés";
-            lastSectionTitle.textContent = "Les dernières news";
-
-            const headerSection = cloneTemplate.querySelector('section');
+            const gameSection = cloneTemplate.querySelector('section');
 
             // Parcourir la liste des jeux
             for (let i = 0; i < games.length; i++) {
@@ -42,6 +47,7 @@ export function header() {
                 // rating de 0/5 avec img par def
                 for (let j = 0; j < 5; j++) {
                     const star = document.createElement('img');
+                    star.className ='starsImg';
                     star.src = j < games[i].rate ? "./img/star.png" : "./img/starEmpty.png";
                     gameRate.appendChild(star);
                 }
@@ -50,13 +56,23 @@ export function header() {
                 gameDiv.appendChild(gameImage);
                 gameDiv.appendChild(gameName);
                 gameDiv.appendChild(gameRate);
-
-                headerSection.appendChild(gameDiv);
+                gameSection.appendChild(gameDiv);
             }
+            const sectionTitle = document.querySelector('h3');
+            sectionTitle.after(gameSection);
 
-            templateHtml.appendChild(cloneTemplate);
         })
         .catch(function (error) {
             console.error(error);
+            const sectionTitle = document.querySelector('h3');
+            const templateHtml = document.querySelector('#erreurTemplate');
+            let cloneTemplate = document.importNode(templateHtml.content, true);
+            let titleError = cloneTemplate.querySelector('p');
+
+            titleError.textContent = "Accès aux jeux impossible";
+
+            
+            sectionTitle.after(cloneTemplate);
         });
+        
 }
