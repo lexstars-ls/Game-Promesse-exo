@@ -88,3 +88,8 @@ main h4 {
     padding-left: 10px;
     padding-right: 10px;
 }
+
+#newsTemplate {
+    height: 80vh;
+    background-color: red;
+}

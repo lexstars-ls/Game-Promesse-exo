@@ -13,10 +13,10 @@ export function mainGame() {
 
     templateHtml.appendChild(title);
     templateHtml.appendChild(sectionTitle);
-    
+
     templateHtml.appendChild(lastSectionTitle);
 
-    const headerPromise = new Promise(function (resolve, reject) {
+    const gamePromise = new Promise(function (resolve, reject) {
         if (GAMES !== undefined) {
             resolve(GAMES);
         } else {
@@ -24,7 +24,7 @@ export function mainGame() {
         }
     });
 
-    headerPromise
+    gamePromise
         .then(function (games) {
             return games
         })
