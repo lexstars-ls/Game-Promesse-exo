@@ -17,7 +17,7 @@ export function mainGame() {
     templateHtml.appendChild(lastSectionTitle);
 
     const gamePromise = new Promise(function (resolve, reject) {
-        if (GAMES !== undefined) {
+        if (GAMES == undefined) {
             resolve(GAMES);
         } else {
             reject("error");
@@ -52,7 +52,7 @@ export function mainGame() {
                     gameRate.appendChild(star);
                 }
 
-                // Ajouter à la div principale puis à header
+                // Ajouter à la div principale puis à 
                 gameDiv.appendChild(gameImage);
                 gameDiv.appendChild(gameName);
                 gameDiv.appendChild(gameRate);

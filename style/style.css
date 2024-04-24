@@ -5,11 +5,16 @@
 
 #gameTemplate {
     height: 100vh;
-    background-color: aquamarine;
-    background-image: url(../img/wallpaper.jpeg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
 
+main{
+    background-image: url(../img/wallpaper.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -25,8 +30,9 @@ h1 {
 #gameSection {
     display: flex;
     justify-content: space-around;
-    width: 80%;
+    gap: 200px;
 }
+
 
 #gameSection div {
     height: 370px;
@@ -36,7 +42,6 @@ h1 {
     overflow: hidden;
     text-align: center;
     box-shadow: 6px 6px 4px rgb(165, 1, 171);
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,7 +49,7 @@ h1 {
 
 #gameSection div h2 {
     color: white;
-    margin-top: 40px;
+    margin-top: 30px;
     margin-bottom: 10px;
 }
 
@@ -54,17 +59,20 @@ h1 {
 
 main h3 {
     color: white;
-    position: absolute;
-    top: 45%;
-    left: 150px;
+    align-self: flex-start;
     font-size: 30px;
 }
 
-main h4 {
+#gameTemplate h4 {
     color: white;
-    position: absolute;
-    left: 150px;
-    top: 90%;
+    text-align: left;
+    font-size: 30px;
+    align-self: flex-start;
+}
+
+
+#gameTemplate h4 {
+    color: white;
     font-size: 30px;
 }
 
@@ -72,16 +80,23 @@ main h4 {
     background-color: red;
     color: white;
     width: 800px;
-    height: 30px;
+    height: 100px;
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+}
 
+#sectionError p {
+    text-align: center;
 }
 
 
 .etoile {
     display: flex;
-   
-    
+
+
 }
+
 .starsImg {
     width: 40px;
     height: 40px;
@@ -89,4 +104,52 @@ main h4 {
     padding-right: 10px;
 }
 
-/* a modifier */
+.imageArticleContainer {
+    margin-bottom: 20px; 
+    position: relative;
+    width: 100%;
+    height: 600px;
+}
+
+.imageArticleContainer img {
+   
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.imageArticleContainer article{
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    background-color: rgba(11, 0, 27, 0.7);
+    top: 0;   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+}
+
+.imageArticleContainer h4{
+   text-align: center;
+   font-size: 40px;
+}
+.imageArticleContainer h5{
+    margin-left: 50%;
+    font-size: 15px;
+}
+ 
+ .imageArticleContainer p{
+    font-size: 18px;
+    width: 80%;
+ }
+
+/* positioner l'article en fonction de son parent */
+.articleGauche{
+    right: 0;
+    top: 50px;
+}
+
+.articleDroite{
+    left: 0;
+}

@@ -1,8 +1,11 @@
 import NEWS from "./news";
 
 export function mainNews() {
+    const templateHtml = document.querySelector('#newsTemplate');
+    let cloneTemplate = document.importNode(templateHtml.content, true);
+
     const newsPromise = new Promise(function (resolve, reject) {
-        if (NEWS !== undefined) {
+        if (NEWS == undefined) {
             resolve(NEWS);
             console.log('news disponible');
         } else {
@@ -15,30 +18,50 @@ export function mainNews() {
         .then(function (news) {
             console.log(news);
 
-            // Parcourir la liste des news
             for (let i = 0; i < news.length; i++) {
-                const templateHtml = document.querySelector('#newsTemplate');
-                let cloneTemplate = document.importNode(templateHtml.content, true);
-
-                // a modifier
+                // Sélectionner les éléments à l'intérieur du template cloné pour cette nouvelle
                 const newsSection = cloneTemplate.querySelector('section');
+                newsSection.classList.add("imageArticleContainer");
+
                 const newsArticle = cloneTemplate.querySelector('article');
+                // ajt de class pour le css
+                if (i === 0 || i === news.length - 1) {
+                  
+                    newsArticle.classList.add("articleGauche");
+                }else{
+                    newsArticle.classList.add("articleDroite");
+                }
+                
+                
+               
                 const newsTexte = cloneTemplate.querySelector('p');
                 const newsTitle = cloneTemplate.querySelector('h4');
-                const newsAuthor = cloneTemplate.querySelector('h5');
-                const newsImage = cloneTemplate.querySelector('img');
-
+                const newsAuthorAndDate = cloneTemplate.querySelector('h5');
+                const newsImage = cloneTemplate.querySelector('img')
                 // Assigner les valeurs
-                // a compléter
                 newsTexte.textContent = news[i].content;
-                newsImage.src = news[i].image;
                 newsTitle.textContent = news[i].title;
-                newsAuthor.textContent =news[i].author && news[i].date;
+                newsImage.src = news[i].image;
 
-                // Ajouter des éléments clonés à la structure HTML existante dans le main
-                // demander explication complémentaire
-                document.querySelector('main').appendChild(cloneTemplate);
+                const authorAndDate = `${news[i].author} - ${news[i].date}`;
+                newsAuthorAndDate.textContent = authorAndDate;
+
+                newsArticle.appendChild(newsTitle);
+                newsArticle.appendChild(newsTexte);
+                newsArticle.appendChild(newsAuthorAndDate);
+
+                newsSection.appendChild(newsImage);
+                newsSection.appendChild(newsArticle);
+                
+
+            //   templateHtml.appendChild(newsSection);
+
+                const main = document.querySelector('main');
+                main.append(newsSection);
             }
+            
+            
+  
         })
         .catch(function (error) {
             console.error(error);
@@ -48,7 +71,7 @@ export function mainNews() {
             errorMessage.textContent = "Une erreur est survenue lors du chargement des news.";
 
             // Ajouter l'élément d'erreur à la structure HTML existante dans le main
-            
             document.querySelector('main').appendChild(errorClone);
         });
 }
+
